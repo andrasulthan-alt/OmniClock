@@ -1,0 +1,96 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+  release:
+    types: [ published ]
+
+permissions:
+  contents: write   # only needed to attach the APK to a Release
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    env:
+      HAS_KEY: ${{ secrets.KEYSTORE_BASE64 != '' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Set up Python (for font tools)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Add Doto dot-matrix font (SIL OFL 1.1), slimmed down
+        continue-on-error: true   # if this fails, the app simply uses the normal font
+        run: |
+          set -e
+          pip install fonttools
+          mkdir -p app/src/main/assets/fonts
+          curl -fsSL -o /tmp/doto.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/doto/Doto%5BROND,wght%5D.ttf"
+          curl -fsSL -o app/src/main/assets/fonts/OFL-Doto.txt "https://raw.githubusercontent.com/google/fonts/main/ofl/doto/OFL.txt"
+          fonttools varLib.instancer /tmp/doto.ttf wght=800 ROND=100 -o /tmp/doto-i.ttf -q
+          pyftsubset /tmp/doto-i.ttf --unicodes="U+0020-007E,U+00A0-00FF,U+2009,U+202F" --output-file=app/src/main/assets/fonts/doto.ttf
+          ls -l app/src/main/assets/fonts
+
+      - name: Prepare Gradle wrapper
+        run: |
+          sed -i 's/\r$//' gradlew
+          chmod +x gradlew
+
+      - name: Build signed release APK
+        if: env.HAS_KEY == 'true'
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 -d > keystore.jks
+          {
+            echo "storePassword=$KEYSTORE_PASSWORD"
+            echo "keyAlias=$KEY_ALIAS"
+            echo "keyPassword=$KEY_PASSWORD"
+          } > keystore.properties
+          ./gradlew :app:assembleRelease --no-daemon --stacktrace
+          rm -f keystore.jks keystore.properties
+
+      - name: Build test APK (no signing key yet)
+        if: env.HAS_KEY != 'true'
+        run: ./gradlew :app:assembleDebug --no-daemon --stacktrace
+
+      - name: Name the APK
+        run: |
+          if [ "$HAS_KEY" = "true" ]; then SRC=$(ls app/build/outputs/apk/release/*.apk | head -1); KIND=""; else SRC=$(ls app/build/outputs/apk/debug/*.apk | head -1); KIND="-test"; fi
+          if [ "${{ github.event_name }}" = "release" ]; then
+            NAME="OmniClock-${{ github.event.release.tag_name }}${KIND}.apk"
+          else
+            NAME="OmniClock-${GITHUB_SHA::7}${KIND}.apk"
+          fi
+          cp "$SRC" "$NAME"
+          sha256sum "$NAME" > "$NAME.sha256"
+          echo "APK_NAME=$NAME" >> "$GITHUB_ENV"
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: omniclock-apk
+          path: |
+            ${{ env.APK_NAME }}
+            ${{ env.APK_NAME }}.sha256
+          if-no-files-found: error
+
+      - name: Attach APK to the Release
+        if: github.event_name == 'release' && env.HAS_KEY == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" "$APK_NAME" "$APK_NAME.sha256" --clobber
