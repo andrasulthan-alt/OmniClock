@@ -6,7 +6,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.best.deskclock"
+        applicationId = "app.omniclock"
         minSdk = 23
         targetSdk = 37
         versionCode = 2037
@@ -46,7 +46,7 @@ android {
             minifyEnabled = true
             shrinkResources = true
             debuggable = false
-            manifestPlaceholders = [appName: "@string/app_label"]
+            manifestPlaceholders = [appName: "OmniClock"]
             if (keystorePropertiesFile.exists()) {
                 signingConfig = signingConfigs.findByName("release")
             } else {
@@ -59,7 +59,7 @@ android {
         }
 
         debug {
-            manifestPlaceholders = [appName: "@string/app_label_debug"]
+            manifestPlaceholders = [appName: "OmniClock test"]
             versionNameSuffix = "-debug"
             applicationIdSuffix = ".debug"
             buildConfigField "boolean", "IS_DEBUG_BUILD", "true"
@@ -87,10 +87,10 @@ android {
             def outputFileName
 
             if (variant.buildType == "nightly") {
-                outputFileName = "Clock_${versionName}-nightly-${commitNumber}-${buildCommit}.apk"
+                outputFileName = "OmniClock_${versionName}-nightly-${commitNumber}-${buildCommit}.apk"
             } else {
                 def suffix = versionNameSuffix ?: (keystorePropertiesFile.exists() ? "-release" : "-unsigned")
-                outputFileName = "Clock_${versionName}${suffix}.apk"
+                outputFileName = "OmniClock_${versionName}${suffix}.apk"
             }
 
             variant.outputs.forEach { output ->
