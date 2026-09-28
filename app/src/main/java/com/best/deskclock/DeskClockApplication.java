@@ -6,14 +6,27 @@
 
 package com.best.deskclock;
 
+import static com.best.deskclock.settings.PreferencesDefaultValues.AMOLED_DARK_MODE;
 import static com.best.deskclock.settings.PreferencesDefaultValues.DARK_THEME;
 import static com.best.deskclock.settings.PreferencesDefaultValues.DEBUG_LANGUAGE_CODE;
 import static com.best.deskclock.settings.PreferencesDefaultValues.LIGHT_THEME;
 import static com.best.deskclock.settings.PreferencesDefaultValues.PURPLE_ACCENT_COLOR;
 import static com.best.deskclock.settings.PreferencesDefaultValues.RED_ACCENT_COLOR;
 import static com.best.deskclock.settings.PreferencesDefaultValues.SYSTEM_THEME;
+import static com.best.deskclock.settings.PreferencesKeys.FILE_ALARM_FONT;
+import static com.best.deskclock.settings.PreferencesKeys.FILE_DIGITAL_CLOCK_FONT;
+import static com.best.deskclock.settings.PreferencesKeys.FILE_SCREENSAVER_DIGITAL_CLOCK_FONT;
+import static com.best.deskclock.settings.PreferencesKeys.FILE_STOPWATCH_FONT;
+import static com.best.deskclock.settings.PreferencesKeys.FILE_TIMER_FONT;
 import static com.best.deskclock.settings.PreferencesKeys.KEY_ACCENT_COLOR;
+import static com.best.deskclock.settings.PreferencesKeys.KEY_ALARM_FONT;
+import static com.best.deskclock.settings.PreferencesKeys.KEY_DARK_MODE;
+import static com.best.deskclock.settings.PreferencesKeys.KEY_DIGITAL_CLOCK_FONT;
 import static com.best.deskclock.settings.PreferencesKeys.KEY_LANGUAGE_CODE;
+import static com.best.deskclock.settings.PreferencesKeys.KEY_SCREENSAVER_DIGITAL_CLOCK_FONT;
+import static com.best.deskclock.settings.PreferencesKeys.KEY_SW_FONT;
+import static com.best.deskclock.settings.PreferencesKeys.KEY_THEME;
+import static com.best.deskclock.settings.PreferencesKeys.KEY_TIMER_DURATION_FONT;
 
 import android.app.Activity;
 import android.app.Application;
@@ -36,11 +49,19 @@ import com.best.deskclock.uidata.UiDataModel;
 import com.best.deskclock.utils.LogUtils;
 import com.best.deskclock.utils.NotificationUtils;
 import com.best.deskclock.utils.SdkUtils;
+import com.best.deskclock.utils.Utils;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Objects;
 
 public class DeskClockApplication extends Application implements Application.ActivityLifecycleCallbacks {
+
+    private static final String KEY_OMNICLOCK_DEFAULTS = "key_omniclock_defaults_v1";
+    private static final String DOT_FONT_ASSET = "fonts/doto.ttf";
 
     private static DeskClockApplication sInstance;
     private DataModel mDataModel;
@@ -57,6 +78,7 @@ public class DeskClockApplication extends Application implements Application.Act
         Controller controller = Controller.getController();
         SharedPreferences prefs = getDefaultSharedPreferences(this);
 
+        applyOmniClockDefaults(prefs);
         initDebugAndNightlyDefaults(prefs);
 
         String theme = SettingsDAO.getTheme(prefs);
@@ -103,6 +125,81 @@ public class DeskClockApplication extends Application implements Application.Act
     @Override public void onActivityPaused(@NonNull Activity activity) {}
     @Override public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {}
     @Override public void onActivityDestroyed(@NonNull Activity activity) {}
+
+    /**
+     * OmniClock: one-time Nothing-style defaults on first launch.
+     * Dark AMOLED theme, red accent, and the Doto dot-matrix font for clock, alarm,
+     * timer, stopwatch and screensaver digits. Everything stays changeable in Settings
+     * (the fonts behave exactly like a custom font the user picked, so "Delete" restores
+     * the normal font). Existing user choices are never overwritten.
+     */
+    private void applyOmniClockDefaults(@NonNull SharedPreferences prefs) {
+        if (prefs.getBoolean(KEY_OMNICLOCK_DEFAULTS, false)) {
+            return;
+        }
+
+        final SharedPreferences.Editor editor = prefs.edit();
+
+        if (!prefs.contains(KEY_THEME)) {
+            editor.putString(KEY_THEME, DARK_THEME);
+        }
+        if (!prefs.contains(KEY_DARK_MODE)) {
+            editor.putString(KEY_DARK_MODE, AMOLED_DARK_MODE);
+        }
+        if (!prefs.contains(KEY_ACCENT_COLOR)) {
+            editor.putString(KEY_ACCENT_COLOR, RED_ACCENT_COLOR);
+        }
+
+        final String[][] dotFonts = {
+            {KEY_DIGITAL_CLOCK_FONT, FILE_DIGITAL_CLOCK_FONT},
+            {KEY_ALARM_FONT, FILE_ALARM_FONT},
+            {KEY_TIMER_DURATION_FONT, FILE_TIMER_FONT},
+            {KEY_SW_FONT, FILE_STOPWATCH_FONT},
+            {KEY_SCREENSAVER_DIGITAL_CLOCK_FONT, FILE_SCREENSAVER_DIGITAL_CLOCK_FONT},
+        };
+        for (String[] font : dotFonts) {
+            if (!prefs.contains(font[0])) {
+                final String path = copyDotFont(font[1]);
+                if (path != null) {
+                    editor.putString(font[0], path);
+                }
+            }
+        }
+
+        editor.putBoolean(KEY_OMNICLOCK_DEFAULTS, true);
+        editor.apply();
+    }
+
+    /**
+     * Copies the bundled Doto font into private storage under the same file-name prefix the
+     * app uses for user-picked fonts, so backup, restore and delete keep working unchanged.
+     *
+     * @return the absolute path of the copy, or {@code null} if the font is not bundled.
+     */
+    @Nullable
+    private String copyDotFont(@NonNull String filePrefix) {
+        final File dir = Utils.getSafeStorageContext(this).getFilesDir();
+        final File dest = new File(dir, filePrefix + "_omniclock_doto.ttf");
+
+        if (dest.isFile() && dest.length() > 0) {
+            return dest.getAbsolutePath();
+        }
+
+        try (InputStream in = getAssets().open(DOT_FONT_ASSET);
+             OutputStream out = new FileOutputStream(dest)) {
+            final byte[] buffer = new byte[8192];
+            int read;
+            while ((read = in.read(buffer)) != -1) {
+                out.write(buffer, 0, read);
+            }
+            return dest.getAbsolutePath();
+        } catch (IOException e) {
+            LogUtils.w("OmniClock: dot-matrix font not available, using the normal font");
+            //noinspection ResultOfMethodCallIgnored
+            dest.delete();
+            return null;
+        }
+    }
 
     private void initDebugAndNightlyDefaults(@NonNull SharedPreferences prefs) {
         if (!prefs.contains(KEY_ACCENT_COLOR)) {
