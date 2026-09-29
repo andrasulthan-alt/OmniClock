@@ -159,45 +159,24 @@
         <item>2</item>
     </string-array>
 
+    <!-- OmniClock: Nothing style, only red and black & white. -->
     <!-- Entries listed in the ListPreference when selecting the color. -->
     <string-array name="array_accent_color">
-        <item>@string/label_default</item>
-        <item>@string/blue_gray_accent_color</item>
-        <item>@string/brown_accent_color</item>
-        <item>@string/green_accent_color</item>
-        <item>@string/indigo_accent_color</item>
-        <item>@string/orange_accent_color</item>
-        <item>@string/pink_accent_color</item>
         <item>@string/red_accent_color</item>
         <item>@string/black_accent_color</item>
-        <item>@string/purple_accent_color</item>
-        <item>@string/yellow_accent_color</item>
-        <item>@string/blue_accent_color</item>
     </string-array>
     <!-- Values that are retrieved from the ListPreference. These must match the color entries above. -->
     <string-array name="accent_color_setting_entries" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
         <item>7</item>
         <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
     </string-array>
 
     <!-- Entries listed in the ListPreference when selecting the theme. -->
     <string-array name="dark_theme_mode_array_theme">
-        <item>@string/label_default</item>
         <item>@string/amoled_dark_theme_mode</item>
     </string-array>
     <!-- Values that are retrieved from the ListPreference. These must match the theme entries above. -->
     <string-array name="dark_theme_mode_setting_values" translatable="false">
-        <item>0</item>
         <item>1</item>
     </string-array>
 
@@ -217,20 +196,10 @@
     <!-- Entries listed in the ListPreference when selecting the animation when switching tabs. -->
     <string-array name="tab_animation_entries">
         <item>@string/label_default</item>
-        <item>@string/tab_animation_cube</item>
-        <item>@string/tab_animation_depth</item>
-        <item>@string/tab_animation_flip</item>
-        <item>@string/tab_animation_gate</item>
-        <item>@string/tab_animation_zoom_out</item>
     </string-array>
     <!-- Values that are retrieved from the ListPreference. These must match the theme entries above. -->
     <string-array name="tab_animation_values" translatable="false">
         <item>tab_animation_default</item>
-        <item>tab_animation_cube</item>
-        <item>tab_animation_depth</item>
-        <item>tab_animation_flip</item>
-        <item>tab_animation_gate</item>
-        <item>tab_animation_zoom_out</item>
     </string-array>
 
     <!-- Alarm confirmation toast: Describes how long from now until alarm fires -->
@@ -376,13 +345,11 @@
     <string-array name="clock_dial_entries">
         <item>@string/clock_dial_with_numbers</item>
         <item>@string/clock_dial_without_numbers</item>
-        <item>@string/clock_dial_with_roman_numbers</item>
     </string-array>
     <!-- Values that are retrieved from the ListPreference. These must match the clock_dial_entries above. -->
     <string-array name="clock_dial_values" translatable="false">
         <item>dial_with_numbers</item>
         <item>dial_without_numbers</item>
-        <item>dial_with_roman_numbers</item>
     </string-array>
 
     <!-- Entries listed in the ListPreference when invoking the material clock dial preference. -->
@@ -399,18 +366,14 @@
     <!-- Entries listed in the ListPreference when invoking the analog widget clock dial preference. -->
     <string-array name="analog_widget_clock_dial_entries">
         <item>@string/label_default</item>
-        <item>@string/clock_dial_with_numbers</item>
         <item>@string/clock_dial_without_numbers</item>
-        <item>@string/clock_dial_with_roman_numbers</item>
-        <item>@string/clock_dial_sun</item>
-        <item>@string/clock_dial_flower</item>
     </string-array>
     <!-- Values that are retrieved from the ListPreference.
          These must match the analog_widget_clock_dial_entries above. -->
     <string-array name="analog_widget_clock_dial_values" translatable="false">
         <item>default</item>
-        <item>dial_with_numbers</item>
         <item>dial_without_numbers</item>
+        <item>dial_with_numbers</item>
         <item>dial_with_roman_numbers</item>
         <item>dial_sun</item>
         <item>dial_flower</item>
@@ -419,14 +382,10 @@
     <!-- Entries listed in the ListPreference when invoking the clock second hand preference. -->
     <string-array name="clock_second_hand_entries">
         <item>@string/label_default</item>
-        <item>@string/clock_second_hand_vintage</item>
-        <item>@string/clock_second_hand_lollipop</item>
     </string-array>
     <!-- Values that are retrieved from the ListPreference. These must match the clock_second_hand_entries above. -->
     <string-array name="clock_second_hand_values" translatable="false">
         <item>default</item>
-        <item>second_hand_vintage</item>
-        <item>second_hand_lollipop</item>
     </string-array>
 
     <!-- Entries listed in the ListPreference when invoking the time picker style preference. -->
