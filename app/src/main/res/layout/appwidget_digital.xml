@@ -57,30 +57,45 @@
             android:layout_width="match_parent"
             android:layout_height="8dp" />
 
-        <TextClock
-            android:id="@+id/clock"
-            android:fontFamily="monospace"
+        <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:ellipsize="none"
-            android:maxLines="1"
-            android:fontFeatureSettings="tnum"
-            android:textColor="@color/digital_widget_time_color"
-            android:visibility="visible"
-            tools:text="01:23 AM"
-            tools:textSize="70sp" />
+            android:layout_height="wrap_content">
 
-        <TextClock
-            android:id="@+id/clockForCustomColor"
-            android:fontFamily="monospace"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:ellipsize="none"
-            android:maxLines="1"
-            android:fontFeatureSettings="tnum"
-            tools:visibility="gone" />
+            <TextClock
+                android:id="@+id/clock"
+                android:fontFamily="monospace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:ellipsize="none"
+                android:maxLines="1"
+                android:fontFeatureSettings="tnum"
+                android:textColor="@color/digital_widget_time_color"
+                android:visibility="visible"
+                tools:text="01:23 AM"
+                tools:textSize="70sp" />
+
+            <TextClock
+                android:id="@+id/clockForCustomColor"
+                android:fontFamily="monospace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:ellipsize="none"
+                android:maxLines="1"
+                android:fontFeatureSettings="tnum"
+                tools:visibility="gone" />
+
+            <!-- OmniClock: dot-matrix digits drawn by DotMatrixClock, shown over the TextClock -->
+            <ImageView
+                android:id="@+id/clockDots"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:importantForAccessibility="no"
+                android:visibility="gone" />
+
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
