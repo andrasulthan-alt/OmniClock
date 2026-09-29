@@ -12,7 +12,7 @@
     android:minHeight="150dp"
     android:minResizeWidth="30dp"
     android:minResizeHeight="50dp"
-    android:previewImage="@drawable/appwidget_vertical_preview"
+    android:previewImage="@drawable/omniclock_preview_vertical"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="0"
     android:widgetCategory="keyguard|home_screen"
