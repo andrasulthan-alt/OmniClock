@@ -89,11 +89,19 @@
             <!-- OmniClock: dot-matrix digits drawn by DotMatrixClock, shown over the TextClock -->
             <ImageView
                 android:id="@+id/clockDots"
+                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
                 android:importantForAccessibility="no"
                 android:visibility="gone" />
+
+            <!-- OmniClock: a second full-size child makes the frame stretch the image above
+                 to the exact size of the clock text, so the digits are big and centered. -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible" />
 
         </FrameLayout>
 
