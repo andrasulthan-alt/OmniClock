@@ -2,6 +2,7 @@
 <!--
     Copyright (C) 2016 The Android Open Source Project
     modified
+    OmniClock: Nothing-style shortcut icon (black, white glyph, red dot).
     SPDX-License-Identifier: Apache-2.0 AND GPL-3.0-only
 -->
 
@@ -11,9 +12,12 @@
     android:viewportWidth="48"
     android:viewportHeight="48">
     <path
-        android:fillColor="@color/md_theme_primary"
+        android:fillColor="#000000"
         android:pathData="M24,24m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0" />
     <path
         android:fillColor="@android:color/white"
         android:pathData="M22 15q-.425 0-.7125-.2875T21 14t.2875-.7125T22 13h4q.425 0 .7125.2875T27 14t-.2875.7125T26 15H22Zm2 11q.425 0 .7125-.2875T25 25V21q0-.425-.2875-.7125T24 20t-.7125.2875T23 21v4q0 .425.2875.7125T24 26Zm0 8q-1.85 0-3.4875-.7125T17.65 31.35t-1.9375-2.8625T15 25t.7125-3.4875T17.65 18.65t2.8625-1.9375T24 16q1.55 0 2.975.5t2.675 1.45l.7-.7q.275-.275.7-.275t.7.275.275.7-.275.7l-.7.7q.95 1.25 1.45 2.675T33 25q0 1.85-.7125 3.4875T30.35 31.35t-2.8625 1.9375T24 34Zm0-2q2.9 0 4.95-2.05T31 25t-2.05-4.95T24 18t-4.95 2.05T17 25t2.05 4.95T24 32Z" />
+    <path
+        android:fillColor="#E8302E"
+        android:pathData="M34.5,10.5a3,3 0 1,0 6,0a3,3 0 1,0 -6,0z" />
 </vector>
