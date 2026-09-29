@@ -364,6 +364,18 @@ public abstract class BaseDigitalAppWidgetProvider extends AppWidgetProvider {
         configureBitmaps(rv, sizes);
         configureWorldCityList(rv, context, prefs, displayMetrics, wm, locale, widgetId, sizes, cities);
 
+        // OmniClock: show the time as Nothing-style dot-matrix digits. Some launchers (Huawei)
+        // ignore fonts bundled in the app, so the digits are drawn as an image instead.
+        // The layouts with text shadow have no image view for this, so they keep the TextClock.
+        if (!isTextShadowDisplayed(prefs)) {
+            if (getClockViewId() != 0) {
+                DotMatrixClock.applyDigital(context, prefs, rv, getClockViewId(), getClockCustomViewId());
+            } else if (getClockHoursViewId() != 0) {
+                DotMatrixClock.applyVertical(context, prefs, rv, getClockHoursViewId(), getClockHoursCustomViewId(),
+                    getClockMinutesViewId(), getClockMinutesCustomViewId());
+            }
+        }
+
         return rv;
     }
 
