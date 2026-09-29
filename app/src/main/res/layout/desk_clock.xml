@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:titleMarginStart="14dp"
-            app:titleTextAppearance="?attr/textAppearanceTitleLarge"
+            app:titleTextAppearance="@style/OmniClock.ToolbarTitle"
             tools:ignore="RtlSymmetry"
             tools:title="Alarm">
 
