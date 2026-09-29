@@ -5,6 +5,9 @@
 -->
 
 <resources>
+    <!-- About screen slogan. Credit to the original app stays, as the GPL license asks. -->
+    <string name="omniclock_slogan" translatable="false">Nothing-style clock, based on Clock by BlackyHawky</string>
+
     <!-- Clock style shown in the menus: plain analog or digital only (no Material "sun/flower" dials).
          The original clock_style_values array stays untouched because the code reads it by position. -->
     <string-array name="omniclock_clock_style_entries">
