@@ -108,6 +108,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
+    // OmniClock: keep only English to make the APK much smaller
+    androidResources {
+        localeFilters.addAll(['en'])
+    }
+
     buildFeatures {
         buildConfig = true
         viewBinding = true
