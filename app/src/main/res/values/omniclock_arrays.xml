@@ -8,6 +8,12 @@
     <!-- About screen slogan. Credit to the original app stays, as the GPL license asks. -->
     <string name="omniclock_slogan" translatable="false">Nothing-style clock, based on Clock by BlackyHawky</string>
 
+    <!-- Main screen titles (Alarm, Clock, Timer, Stopwatch) in the Nothing-style dot-matrix font -->
+    <style name="OmniClock.ToolbarTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:fontFamily">@font/doto</item>
+        <item name="fontFamily">@font/doto</item>
+    </style>
+
     <!-- Clock style shown in the menus: plain analog or digital only (no Material "sun/flower" dials).
          The original clock_style_values array stays untouched because the code reads it by position. -->
     <string-array name="omniclock_clock_style_entries">
