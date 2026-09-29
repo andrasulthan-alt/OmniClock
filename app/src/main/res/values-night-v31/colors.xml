@@ -48,13 +48,14 @@
     <color name="md_theme_surfaceContainerHighest">@android:color/system_neutral2_700</color>
 
     <!-- WIDGET COLORS -->
-    <color name="widget_background_color">@android:color/system_accent2_800</color>
-    <color name="md_theme_analogWidgetPrimary">@android:color/system_accent1_100</color>
-    <color name="md_theme_analogWidgetSecondary">@android:color/system_accent2_400</color>
-    <color name="digital_widget_time_color">@android:color/system_accent1_100</color>
-    <color name="md_theme_widgetTertiary">@android:color/system_accent3_200</color>
-    <color name="vertical_widget_hour_color">@android:color/system_accent2_100</color>
-    <color name="vertical_widget_minute_color">@android:color/system_accent1_100</color>
-    <color name="next_alarm_widget_title_color">@android:color/system_accent2_100</color>
-    <color name="next_alarm_widget_alarm_color">@android:color/system_accent1_100</color>
+    <!-- OmniClock: Nothing-style widget colors -->
+    <color name="widget_background_color">#1B1B1D</color>
+    <color name="md_theme_analogWidgetPrimary">#FFFFFF</color>
+    <color name="md_theme_analogWidgetSecondary">#E8302E</color>
+    <color name="digital_widget_time_color">#FFFFFF</color>
+    <color name="md_theme_widgetTertiary">#E8302E</color>
+    <color name="vertical_widget_hour_color">#FFFFFF</color>
+    <color name="vertical_widget_minute_color">#E8302E</color>
+    <color name="next_alarm_widget_title_color">#FFFFFF</color>
+    <color name="next_alarm_widget_alarm_color">#E8302E</color>
 </resources>
