@@ -83,6 +83,10 @@ public class AboutFragment extends BaseSettingsScreenFragment
     private static final String KEY_SHOW_RESET_SETTINGS_DIALOG = "show_reset_settings_dialog";
     private static final String KEY_PENDING_LINK_DIALOG = "pending_link_dialog";
     private static final String KEY_SHOW_KEEP_ANDROID_OPEN_DIALOG = "show_keep_android_open_dialog";
+
+    // OmniClock: this fork's name and repository (based on Clock by BlackyHawky)
+    private static final String OMNICLOCK_NAME = "OmniClock";
+    private static final String OMNICLOCK_REPO = "https://github.com/andrasulthan-alt/OmniClock";
     private static final String KEY_SHOW_EXPORT_COMPLETE_DIALOG = "show_export_complete_dialog";
 
     private boolean mShowResetSettingsDialog = false;
@@ -345,19 +349,19 @@ public class AboutFragment extends BaseSettingsScreenFragment
                 } else if (BuildConfig.IS_NIGHTLY_BUILD) {
                     version = version.replace(BuildConfig.VERSION_NAME, "nightly" + "-" + BuildConfig.COMMIT_NUMBER);
                 }
-                link = "https://github.com/BlackyHawky/Clock/releases/tag/" + version;
+                link = OMNICLOCK_REPO + "/releases";
                 iconId = R.drawable.ic_about_update;
                 titleId = R.string.whats_new_title;
                 messageId = R.string.whats_new_dialog_message;
             }
             case KEY_ABOUT_FEATURES -> {
-                link = "https://github.com/BlackyHawky/Clock?tab=readme-ov-file#-features";
+                link = OMNICLOCK_REPO + "#readme";
                 iconId = R.drawable.ic_about_features;
                 titleId = R.string.features_title;
                 messageId = R.string.features_dialog_message;
             }
             case KEY_ABOUT_VIEW_ON_GITHUB -> {
-                link = "https://github.com/BlackyHawky/Clock";
+                link = OMNICLOCK_REPO;
                 iconId = R.drawable.ic_about_github;
                 titleId = R.string.about_github_link;
                 messageId = R.string.github_dialog_message;
@@ -369,7 +373,7 @@ public class AboutFragment extends BaseSettingsScreenFragment
                 messageId = R.string.translate_dialog_message;
             }
             case KEY_ABOUT_READ_LICENCE -> {
-                link = "https://github.com/BlackyHawky/Clock/blob/main/LICENSE";
+                link = OMNICLOCK_REPO + "/blob/main/LICENSE";
                 iconId = R.drawable.ic_about_license;
                 titleId = R.string.license;
                 messageId = R.string.license_dialog_message;
@@ -417,9 +421,8 @@ public class AboutFragment extends BaseSettingsScreenFragment
     }
 
     private void setupPreferences() {
-        mTitlePref.setTitle(Utils.getStringResByBuildType(
-            R.string.app_label, R.string.app_label_debug, R.string.app_label_nightly)
-        );
+        // OmniClock: own app name on the About screen
+        mTitlePref.setTitle(OMNICLOCK_NAME);
 
         if (BuildConfig.IS_DEBUG_BUILD) {
             mVersionPref.setSelectable(false);
@@ -433,8 +436,12 @@ public class AboutFragment extends BaseSettingsScreenFragment
         mAboutFeaturesPref.setOnPreferenceClickListener(this);
         mViewOnGitHubPref.setOnPreferenceClickListener(this);
         mTranslatePref.setOnPreferenceClickListener(this);
+        // OmniClock: the translation project belongs to the original app, so it is hidden here
+        mTranslatePref.setVisible(false);
         mReadLicencePref.setOnPreferenceClickListener(this);
         mKeepAndroidOpenPref.setOnPreferenceClickListener(this);
+        // OmniClock: personal message from the original developer, hidden in this fork
+        mKeepAndroidOpenPref.setVisible(false);
 
         mDebugCategory.setVisible(SettingsDAO.isDebugSettingsDisplayed(getPrefs()));
         mEnableLocalLoggingPref.setVisible(SettingsDAO.isDebugSettingsDisplayed(getPrefs()));
