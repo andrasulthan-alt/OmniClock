@@ -8,6 +8,7 @@ package com.best.deskclock.uicomponents;
 
 import static com.best.deskclock.settings.PreferencesDefaultValues.AMOLED_DARK_MODE;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,8 +57,10 @@ public abstract class CollapsingToolbarBaseActivity extends BaseActivity {
 
         final String getDarkMode = SettingsDAO.getDarkMode(getPrefs());
 
-        mBaseBinding.collapsingToolbar.setExpandedTitleTypeface(getGeneralTypeface());
-        mBaseBinding.collapsingToolbar.setCollapsedTitleTypeface(getGeneralTypeface());
+        // OmniClock: screen titles use the Nothing-style dot-matrix font
+        final Typeface titleTypeface = getOmniClockTitleTypeface();
+        mBaseBinding.collapsingToolbar.setExpandedTitleTypeface(titleTypeface);
+        mBaseBinding.collapsingToolbar.setCollapsedTitleTypeface(titleTypeface);
 
         if (isNight() && getDarkMode.equals(AMOLED_DARK_MODE)) {
             mBaseBinding.collapsingToolbar.setBackgroundColor(getColor(android.R.color.black));
@@ -132,6 +135,19 @@ public abstract class CollapsingToolbarBaseActivity extends BaseActivity {
 
     public CollapsingToolbarBaseLayoutBinding getBaseBinding() {
         return mBaseBinding;
+    }
+
+    /**
+     * OmniClock: the bundled Doto dot-matrix font for screen titles, or the normal app font
+     * if it is not available.
+     */
+    @Nullable
+    private Typeface getOmniClockTitleTypeface() {
+        try {
+            return Typeface.createFromAsset(getAssets(), "fonts/doto.ttf");
+        } catch (RuntimeException e) {
+            return getGeneralTypeface();
+        }
     }
 
     private void disableCollapsingToolbarLayoutScrollingBehavior() {
