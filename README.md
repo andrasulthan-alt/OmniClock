@@ -1,132 +1,48 @@
-<!--suppress CheckImageSize -->
-# <img width="24" height="24" alt="image" src="/fastlane/metadata/android/en-US/images/icon.png" /> Clock
-**Clock** is a customizable, privacy‑first, open-source clock app inspired by AOSP Clock.  
-It combines modern design, powerful features, and transparency — giving you full control over your time.
+# OmniClock
 
-# 📑 Table of Contents
+A Nothing-style clock for Android — black, gray and white with a single red accent, and dot-matrix digits everywhere.
 
-- [Download](#-download)
-- [Features](#-features)
-- [Common Issues](#-common-issues)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Screenshots](#-screenshots)
-- [Credits](#-credits)
+OmniClock is an alarm, clock, timer and stopwatch app with home-screen widgets that look like they belong on a Nothing phone, even on phones from other brands.
 
-# 📥 Download
+## Features
 
-[<img src="/images/badge_github.png" alt="Get it on GitHub" height="80">](https://github.com/BlackyHawky/Clock/releases)
-[<img src="/images/badge_f-droid.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/com.best.deskclock/)
-[<img src="/images/badge_izzy_on_droid.png" alt="Get it on IzzyOnDroid" height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.best.deskclock/)
-[<img src="/images/badge_obtainium.png" alt="Get it on Obtainium" height="80">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/BlackyHawky/Clock/releases)
+- **Nothing look** — pure black (or white) with neutral gray cards, one red accent, dot-matrix screen titles
+- **Dot-matrix widgets** — digital and vertical clock widgets with dot-matrix digits and red minutes, drawn as an image so they also work on launchers that ignore app fonts (like Huawei)
+- **Dot-matrix analog widget** — a ring of dots with red hands
+- **Transparent widgets** — turn off the widget background to show the time straight on your wallpaper
+- **Everything a clock needs** — alarms, world clock, timers, stopwatch and a screensaver
+- **Light and small** — about 3.4 MB, English only
 
-> [!NOTE]  
-> **Build variants:**
-> - **Release:** Stable versions recommended for everyday use (available on all platforms above).
-> - **Nightly:** Experimental builds with the latest changes, may be unstable (available on GitHub, and also on Obtainium if you enable _"Include prereleases"_).
-> - **Debug:** Developer-oriented builds with extra logging and diagnostics (available only on GitHub).
->
-> All variants (Release, Nightly, Debug) can be installed side by side without conflict.
+## Privacy
 
-# ✨ Features
+- **No internet permission** — OmniClock cannot send anything anywhere
+- No ads, no analytics, no trackers
+- The only permissions are the ones an alarm clock needs: notifications, vibration, flashlight, keeping the screen on and waking the phone when an alarm rings, and restoring alarms after a reboot
 
-### • ⏰ **Advanced alarms**
+## Install
 
-* Set alarms to a specific date
-* To dismiss/snooze alarms:
-  * Flip or shake your device
-  * Use power or volume buttons to snooze/stop
-  * Solve math problems
-* Swipe to delete, duplicate, or customize alarms
-* Custom titles, backgrounds, and ringtones (including random playback)
+1. **Komi Store:** https://github-store.org/app?repo=andrasulthan-alt/OmniClock
+2. **Obtainium:** add `https://github.com/andrasulthan-alt/OmniClock`
+3. **Manual:** download the APK from [Releases](https://github.com/andrasulthan-alt/OmniClock/releases)
 
-### • 🎨 **Customization**
-  * Light, dark, or system theme
-  * AMOLED mode for deep blacks
-  * Digital or analog clock styles
-  * Customizable interface, screensaver, and widgets
-  * Dynamic colors for Android 12+
+Every release is signed with the same key, so updates install over the previous version. Each APK comes with a `.sha256` file so you can check the download.
 
-### • 🌍 **World clock**
-  * Display home time when abroad
-  * View time in multiple cities worldwide
+### Adding a widget
 
-### • ⏱️ **Timer & stopwatch**
-  * Built-in timer and stopwatch
-  * Share stopwatch results with contacts
+Long-press an empty spot on the home screen → **Widgets** → **OmniClock** → drag **Digital clock**, **Vertical clock** or **Analogue clock** to the home screen.
 
-### • ⚙️ **Extra features**
-  * Quick settings tiles (Android 7+)
-  * Backup & restore (except custom ringtones)
-  * Material Design UI
-  * Support for [Direct Boot](https://developer.android.com/privacy-and-security/direct-boot)
-  * Alarm support on some Snapdragon devices when powered off
-  * [Reproducible Builds](https://reproducible-builds.org/) for transparency
+For the transparent look: OmniClock → **Settings** → **Widgets** → **Digital clock** → turn off **Display the background**.
 
-> [!NOTE]  
-> Some extra features may not work on certain devices:
-> - **Direct Boot support**: see the discussion [here](https://github.com/BlackyHawky/Clock/issues/396).
-> - **Power‑off alarm on Snapdragon devices**: may fail even if the _"com.qualcomm.qti.poweroffalarm"_ system app is present. See the discussion [here](https://github.com/BlackyHawky/Clock/issues/88).
+### Huawei and other phones with strict battery saving
 
-# 🐞 Common Issues
+The dot-matrix widgets refresh once a minute, and alarms must be able to ring on time. Allow OmniClock to run in the background (on Huawei: **Settings → Battery → App launch → OmniClock → Manage manually**, then turn on all three switches).
 
-* Device-specific issues may occur due to limited testing.
-* On Android 14+ with HyperOS, the _"Full screen notification"_ permission may be revoked. Possible solution [here](https://github.com/BlackyHawky/Clock/discussions/303#discussioncomment-13407709).
-* MIUI users may face problems due to aggressive battery optimizations.
-  * Please make sure that battery optimizations are disabled for the app before opening an issue.
-* For ZTE devices, go to: _Settings_ → _Battery_ → _Apps AI-control_ → _Clock_ → Set _Auto-start_, _Secondary Launch_, and _Background running_ to _**"Allowed"**_ from _**"Automatic"**_ to ensure alarms trigger correctly.
+## Credits
 
-> [!NOTE]  
-> I’m not an expert developer, so some problems may require community help to solve.
+OmniClock is based on [Clock by BlackyHawky](https://github.com/BlackyHawky/Clock), which itself is based on the AOSP DeskClock. Many thanks to BlackyHawky and all contributors of the original app.
 
-# 🤝 Contributing
+The dot-matrix font is [Doto](https://github.com/oliverlalan/Doto) (SIL Open Font License 1.1).
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting issues, translations, and code contributions.
+## License
 
-<details>
-<summary><b>Click here to see the translation status</b></summary>
-<br>
-
-[![Translation status](https://translate.codeberg.org/widget/clock/clock/multi-auto.svg)](https://translate.codeberg.org/engage/clock/)
-</details>
-
-# 📜 License
-
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
-
-Clock is licensed under **GNU General Public License v3.0 (GPLv3)**.
-This strong copyleft license requires that any modifications or larger works using Clock must also be distributed under the same license, with complete source code available.
-
-See the [LICENSE](LICENSE) file for full details.
-
-> [!NOTE]  
-> Since Clock is based on **AOSP Clock**, which is licensed under **Apache License 2.0**, an additional [Apache 2.0](LICENSE-Apache-2.0) license file is provided in this repository.
-
-# 📷 Screenshots
-
-<details>
-<summary><b>Click here to see screenshots</b></summary>
-<br>
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/01.jpg" alt="Screenshot 01" width="200" />
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/02.jpg" alt="Screenshot 02" width="200" />
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/03.jpg" alt="Screenshot 03" width="200" />
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/04.jpg" alt="Screenshot 04" width="200" />
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/05.jpg" alt="Screenshot 05" width="200" />
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/06.jpg" alt="Screenshot 06" width="200" />
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/07.jpg" alt="Screenshot 07" width="200" />
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/08.jpg" alt="Screenshot 08" width="200" />
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/09.jpg" alt="Screenshot 09" width="200" />
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/10.jpg" alt="Screenshot 10" width="200" />
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/11.jpg" alt="Screenshot 11" width="200" />
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/12.jpg" alt="Screenshot 12" width="200" />
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/13.jpg" alt="Screenshot 13" width="200" />
- <img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/14.jpg" alt="Screenshot 14" width="200" />
-</details>
-
-# 🏅 Credits
-* 🖼️ **App icon** inspired by [LineageOS DeskClock](https://github.com/LineageOS/android_packages_apps_DeskClock), modified by [BlackyHawky](https://github.com/BlackyHawky)
-* 💻 Code references and inspiration from:
-    * [LineageOS](https://github.com/LineageOS/android_packages_apps_DeskClock)
-    * [crDroid Android](https://github.com/crdroidandroid/android_packages_apps_DeskClock)
-* 🌍 Translations provided by the community via [Weblate](https://translate.codeberg.org/projects/clock/)
-* 🤝 Thanks to all [contributors](https://github.com/BlackyHawky/Clock/graphs/contributors) who help improve Clock
+OmniClock is licensed under the [GNU General Public License v3.0](LICENSE). Parts that come from AOSP are licensed under the [Apache License 2.0](LICENSE-Apache-2.0).
