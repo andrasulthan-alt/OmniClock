@@ -2,6 +2,7 @@
 <!--
     Copyright (C) 2016 The Android Open Source Project
     modified
+    OmniClock: Nothing-style shortcut icon (black, white glyph, red dot).
     SPDX-License-Identifier: Apache-2.0 AND GPL-3.0-only
 -->
 
@@ -11,9 +12,12 @@
     android:viewportWidth="48"
     android:viewportHeight="48">
     <path
-        android:fillColor="@color/md_theme_primary"
+        android:fillColor="#000000"
         android:pathData="M24,24m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0" />
     <path
         android:fillColor="@android:color/white"
         android:pathData="M25 24.6V21q0-.425-.2875-.7125T24 20t-.7125.2875T23 21v3.975q0 .2.075.3875t.225.3375l2.8 2.8q.275.275.7.275t.7-.275.275-.7-.275-.7L25 24.6ZM24 34q-1.875 0-3.5125-.7125t-2.85-1.925-1.925-2.85T15 25t.7125-3.5125 1.925-2.85 2.85-1.925T24 16t3.5125.7125 2.85 1.925 1.925 2.85T33 25t-.7125 3.5125-1.925 2.85-2.85 1.925T24 34ZM14.05 19.3q-.275-.275-.275-.7t.275-.7l2.85-2.85q.275-.275.7-.275t.7.275.275.7-.275.7L15.45 19.3q-.275.275-.7.275t-.7-.275Zm19.9 0q-.275.275-.7.275t-.7-.275L29.7 16.45q-.275-.275-.275-.7t.275-.7.7-.275.7.275l2.85 2.85q.275.275.275.7t-.275.7ZM24 32q2.925 0 4.9625-2.0375T31 25t-2.0375-4.9625T24 18t-4.9625 2.0375T17 25t2.0375 4.9625T24 32Z" />
+    <path
+        android:fillColor="#E8302E"
+        android:pathData="M34.5,10.5a3,3 0 1,0 6,0a3,3 0 1,0 -6,0z" />
 </vector>
