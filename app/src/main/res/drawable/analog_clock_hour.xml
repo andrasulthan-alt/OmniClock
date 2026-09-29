@@ -2,6 +2,7 @@
 <!--
     Copyright (C) 2016 The Android Open Source Project
     modified
+    OmniClock: thick rounded red hour hand (Nothing style).
     SPDX-License-Identifier: Apache-2.0 AND GPL-3.0-only
 -->
 
@@ -13,6 +14,6 @@
     android:viewportHeight="1176"
     tools:ignore="VectorRaster">
     <path
-        android:fillColor="@android:color/white"
-        android:pathData="M588 648.2c-4.4 0-8-3.6-8-8v-256c0-4.4 3.6-8 8-8s8 3.6 8 8v256c0 4.4-3.6 8-8 8z" />
+        android:fillColor="@color/md_theme_widgetTertiary"
+        android:pathData="M566,588L566,340A22,22 0,0 1,610 340L610,588A22,22 0,0 1,566 588Z" />
 </vector>
