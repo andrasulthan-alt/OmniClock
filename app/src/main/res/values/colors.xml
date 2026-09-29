@@ -277,22 +277,23 @@
     <color name="purpleAnalogWidgetSecondary">#471255</color>
 
     <!-- RED COLORS -->
-    <color name="redColorAccent">#E53935</color>
-    <color name="redColorPrimary">#E53935</color>
+    <!-- OmniClock: Nothing red on neutral white/gray (no pink tint) -->
+    <color name="redColorAccent">#D71921</color>
+    <color name="redColorPrimary">#D71921</color>
     <color name="redPrimaryInverse">#EF9A9A</color>
-    <color name="redPrimaryContainer">#FFCDD2</color>
+    <color name="redPrimaryContainer">#FBE3E3</color>
     <color name="redOnPrimary">#FFFFFF</color>
     <color name="redOnPrimaryContainer">#5C0E0E</color>
-    <color name="redSecondaryContainer">#F5C2C2</color>
-    <color name="redColorSurface">#FFEBEE</color>
-    <color name="redColorInverseSurface">#2F2525</color>
-    <color name="redSurfaceContainerLowest">#FFF8F9</color>
-    <color name="redSurfaceContainerHighest">#EAD9DC</color>
-    <color name="redColorBackground">#FEFBFF</color>
-    <color name="redColorSecondary">#705A56</color>
-    <color name="redColorTertiary">#AB4946</color>
-    <color name="redAnalogWidgetPrimary">#F44336</color>
-    <color name="redAnalogWidgetSecondary">#731D1B</color>
+    <color name="redSecondaryContainer">#F4D4D4</color>
+    <color name="redColorSurface">#F2F2F2</color>
+    <color name="redColorInverseSurface">#1B1B1D</color>
+    <color name="redSurfaceContainerLowest">#FFFFFF</color>
+    <color name="redSurfaceContainerHighest">#E3E3E3</color>
+    <color name="redColorBackground">#FFFFFF</color>
+    <color name="redColorSecondary">#5E5E5E</color>
+    <color name="redColorTertiary">#3C3C3C</color>
+    <color name="redAnalogWidgetPrimary">#000000</color>
+    <color name="redAnalogWidgetSecondary">#D71921</color>
 
     <!-- YELLOW COLORS -->
     <color name="yellowColorAccent">#FDD835</color>
@@ -334,6 +335,6 @@
     <color name="nightOrangeColorBackground">#1C1812</color>
     <color name="nightPinkColorBackground">#1B1416</color>
     <color name="nightPurpleColorBackground">#181419</color>
-    <color name="nightRedColorBackground">#1B1414</color>
+    <color name="nightRedColorBackground">#000000</color>
     <color name="nightYellowColorBackground">#1C1B15</color>
 </resources>
