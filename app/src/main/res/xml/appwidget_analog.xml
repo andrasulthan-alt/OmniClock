@@ -13,7 +13,7 @@
     android:minHeight="72dp"
     android:minResizeWidth="48dp"
     android:minResizeHeight="48dp"
-    android:previewImage="@drawable/appwidget_analog_clock_preview"
+    android:previewImage="@drawable/omniclock_preview_analog"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="0"
     android:widgetFeatures="configuration_optional|reconfigurable"
