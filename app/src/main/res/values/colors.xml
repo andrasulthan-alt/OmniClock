@@ -57,16 +57,17 @@
     <color name="md_theme_surfaceContainerHighest">#E1E2EC</color>
 
     <!-- WIDGET COLORS -->
-    <color name="widget_background_color">#EEF0FF</color>
-    <color name="md_theme_analogWidgetPrimary">#6076AC</color>
-    <color name="md_theme_analogWidgetSecondary">#404659</color>
-    <color name="digital_widget_time_color">#475D92</color>
-    <color name="md_theme_widgetTertiary">#725572</color>
-    <color name="widget_text_color">#1D1B20</color>
-    <color name="vertical_widget_hour_color">#575E71</color>
-    <color name="vertical_widget_minute_color">#475D92</color>
-    <color name="next_alarm_widget_title_color">#575E71</color>
-    <color name="next_alarm_widget_alarm_color">#475D92</color>
+    <!-- OmniClock: Nothing-style widget colors -->
+    <color name="widget_background_color">#FFFFFF</color>
+    <color name="md_theme_analogWidgetPrimary">#000000</color>
+    <color name="md_theme_analogWidgetSecondary">#D71921</color>
+    <color name="digital_widget_time_color">#000000</color>
+    <color name="md_theme_widgetTertiary">#D71921</color>
+    <color name="widget_text_color">#1A1A1A</color>
+    <color name="vertical_widget_hour_color">#000000</color>
+    <color name="vertical_widget_minute_color">#D71921</color>
+    <color name="next_alarm_widget_title_color">#000000</color>
+    <color name="next_alarm_widget_alarm_color">#D71921</color>
 
     <!--
     TO FIND ACCENT COLORS (except for Black colors):
