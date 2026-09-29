@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    OmniClock: Nothing-style option lists.
+    SPDX-License-Identifier: GPL-3.0-only
+-->
+
+<resources>
+    <!-- Clock style shown in the menus: plain analog or digital only (no Material "sun/flower" dials).
+         The original clock_style_values array stays untouched because the code reads it by position. -->
+    <string-array name="omniclock_clock_style_entries">
+        <item>@string/clock_style_analog</item>
+        <item>@string/clock_style_digital</item>
+    </string-array>
+    <string-array name="omniclock_clock_style_values" translatable="false">
+        <item>analog</item>
+        <item>digital</item>
+    </string-array>
+</resources>
