@@ -31,16 +31,17 @@ jobs:
           python-version: "3.12"
 
       - name: Add Doto dot-matrix font (SIL OFL 1.1), slimmed down
-        continue-on-error: true   # if this fails, the app simply uses the normal font
         run: |
           set -e
           pip install fonttools
-          mkdir -p app/src/main/assets/fonts
-          curl -fsSL -o /tmp/doto.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/doto/Doto%5BROND,wght%5D.ttf"
-          curl -fsSL -o app/src/main/assets/fonts/OFL-Doto.txt "https://raw.githubusercontent.com/google/fonts/main/ofl/doto/OFL.txt"
+          mkdir -p app/src/main/assets/fonts app/src/main/res/font
+          curl -fsSL --retry 3 -o /tmp/doto.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/doto/Doto%5BROND,wght%5D.ttf"
+          curl -fsSL --retry 3 -o app/src/main/assets/fonts/OFL-Doto.txt "https://raw.githubusercontent.com/google/fonts/main/ofl/doto/OFL.txt"
           fonttools varLib.instancer /tmp/doto.ttf wght=800 ROND=100 -o /tmp/doto-i.ttf -q
           pyftsubset /tmp/doto-i.ttf --unicodes="U+0020-007E,U+00A0-00FF,U+2009,U+202F" --output-file=app/src/main/assets/fonts/doto.ttf
-          ls -l app/src/main/assets/fonts
+          # Same font as a resource, so home-screen widgets can use it too
+          cp app/src/main/assets/fonts/doto.ttf app/src/main/res/font/doto.ttf
+          ls -l app/src/main/assets/fonts app/src/main/res/font
 
       - name: Prepare Gradle wrapper
         run: |
