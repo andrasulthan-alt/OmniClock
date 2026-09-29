@@ -21,7 +21,7 @@
 
         <SwitchPreferenceCompat
             android:key="key_next_alarm_widget_display_text_shadow"
-            android:isPreferenceVisible="false"
+            app:isPreferenceVisible="false"
             android:layout="@layout/settings_preference_layout"
             android:title="@string/display_text_shadow_title"
             android:defaultValue="false"
