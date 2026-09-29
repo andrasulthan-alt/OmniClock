@@ -286,22 +286,23 @@
     <color name="purpleAnalogWidgetSecondary">#E6C9EC</color>
 
     <!-- RED COLORS -->
-    <color name="redColorAccent">#EF9A9A</color>
-    <color name="redColorPrimary">#EF9A9A</color>
-    <color name="redPrimaryInverse">#E53935</color>
-    <color name="redPrimaryContainer">#68231D</color>
-    <color name="redOnPrimary">#C62828</color>
-    <color name="redOnPrimaryContainer">#F7CDCD</color>
-    <color name="redColorSurface">#433636</color>
-    <color name="redColorInverseSurface">#FFF5F7</color>
-    <color name="redSurfaceContainerLowest">#221B1B</color>
-    <color name="redSurfaceContainerHighest">#5D5252</color>
-    <color name="redSecondaryContainer">#7A3635</color>
+    <!-- OmniClock: Nothing red on neutral gray/black (no warm tint) -->
+    <color name="redColorAccent">#E8302E</color>
+    <color name="redColorPrimary">#E8302E</color>
+    <color name="redPrimaryInverse">#D71921</color>
+    <color name="redPrimaryContainer">#3A1414</color>
+    <color name="redOnPrimary">#FFFFFF</color>
+    <color name="redOnPrimaryContainer">#FFFFFF</color>
+    <color name="redColorSurface">#1B1B1D</color>
+    <color name="redColorInverseSurface">#F2F2F2</color>
+    <color name="redSurfaceContainerLowest">#111112</color>
+    <color name="redSurfaceContainerHighest">#2E2E30</color>
+    <color name="redSecondaryContainer">#3A1414</color>
     <color name="redColorBackground">@color/nightRedColorBackground</color>
-    <color name="redColorSecondary">#F7CDCD</color>
-    <color name="redColorTertiary">#F3B5B5</color>
-    <color name="redAnalogWidgetPrimary">#EF9A9A</color>
-    <color name="redAnalogWidgetSecondary">#F7CDCD</color>
+    <color name="redColorSecondary">#C8C8C8</color>
+    <color name="redColorTertiary">#E0E0E0</color>
+    <color name="redAnalogWidgetPrimary">#FFFFFF</color>
+    <color name="redAnalogWidgetSecondary">#E8302E</color>
 
     <!-- YELLOW COLORS -->
     <color name="yellowColorAccent">#FFF59D</color>
