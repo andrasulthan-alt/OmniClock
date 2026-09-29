@@ -12,7 +12,7 @@
     android:minHeight="70dp"
     android:minResizeWidth="50dp"
     android:minResizeHeight="30dp"
-    android:previewImage="@drawable/appwidget_digital_clock_preview"
+    android:previewImage="@drawable/omniclock_preview_digital"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="0"
     android:widgetCategory="keyguard|home_screen"
