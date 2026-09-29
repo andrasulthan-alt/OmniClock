@@ -18,9 +18,9 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Typeface;
@@ -271,18 +271,26 @@ public class WidgetUtils {
      * @return the default background color for day mode.
      */
     public static int getBackgroundColorDay(@NonNull Context context) {
-        return SdkUtils.isAtLeastAndroid12()
-            ? ContextCompat.getColor(context, android.R.color.system_accent2_50)
-            : Color.TRANSPARENT;
+        // OmniClock: Nothing-style colors from res/values*/colors.xml instead of wallpaper colors
+        return getColorForNightMode(context, R.color.widget_background_color, false);
     }
 
     /**
      * @return the default background color for night mode.
      */
     public static int getBackgroundColorNight(@NonNull Context context) {
-        return SdkUtils.isAtLeastAndroid12()
-            ? ContextCompat.getColor(context, android.R.color.system_accent2_800)
-            : Color.TRANSPARENT;
+        // OmniClock: Nothing-style colors from res/values*/colors.xml instead of wallpaper colors
+        return getColorForNightMode(context, R.color.widget_background_color, true);
+    }
+
+    /**
+     * OmniClock: resolves a color resource for day or night mode, whatever mode the phone is in now.
+     */
+    private static int getColorForNightMode(@NonNull Context context, int colorRes, boolean night) {
+        final Configuration config = new Configuration(context.getResources().getConfiguration());
+        config.uiMode = (config.uiMode & ~Configuration.UI_MODE_NIGHT_MASK)
+            | (night ? Configuration.UI_MODE_NIGHT_YES : Configuration.UI_MODE_NIGHT_NO);
+        return ContextCompat.getColor(context.createConfigurationContext(config), colorRes);
     }
 
     /**
