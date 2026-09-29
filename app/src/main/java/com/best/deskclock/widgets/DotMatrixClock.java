@@ -55,6 +55,8 @@ public final class DotMatrixClock {
 
     /**
      * Digital widget: one image with the full time (e.g. "13:41").
+     * With the default colors the hours are white (black in light mode) and the minutes are
+     * Nothing red; with a custom clock color the whole time uses that color.
      */
     public static void applyDigital(@NonNull Context context, @NonNull SharedPreferences prefs, @NonNull RemoteViews rv,
                                     int clockViewId, int clockCustomViewId) {
@@ -63,9 +65,16 @@ public final class DotMatrixClock {
         final int color = isDefaultColor
             ? ContextCompat.getColor(context, R.color.digital_widget_time_color)
             : WidgetDAO.getDigitalWidgetCustomClockColor(prefs);
+        // OmniClock: Nothing red accent on the minutes
+        final int minutesColor = isDefaultColor
+            ? ContextCompat.getColor(context, R.color.md_theme_widgetTertiary)
+            : color;
         final String pattern = DateFormat.is24HourFormat(context) ? "HH:mm" : "h:mm";
+        final String time = format(pattern);
+        final int minutesStart = time.indexOf(':') + 1;
 
-        if (apply(context, rv, R.id.clockDots, isDefaultColor ? clockViewId : clockCustomViewId, format(pattern), color)) {
+        if (apply(context, rv, R.id.clockDots, isDefaultColor ? clockViewId : clockCustomViewId,
+            time, color, minutesStart, minutesColor)) {
             scheduleNextMinute(context);
         }
     }
@@ -88,24 +97,30 @@ public final class DotMatrixClock {
 
         final String hoursPattern = DateFormat.is24HourFormat(context) ? "HH" : "hh";
 
+        final String hours = format(hoursPattern);
+        final String minutes = format("mm");
         final boolean hoursDone = apply(context, rv, R.id.clockHoursDots,
-            isDefaultHoursColor ? hoursViewId : hoursCustomViewId, format(hoursPattern), hoursColor);
+            isDefaultHoursColor ? hoursViewId : hoursCustomViewId, hours, hoursColor, hours.length(), hoursColor);
         final boolean minutesDone = apply(context, rv, R.id.clockMinutesDots,
-            isDefaultMinutesColor ? minutesViewId : minutesCustomViewId, format("mm"), minutesColor);
+            isDefaultMinutesColor ? minutesViewId : minutesCustomViewId, minutes, minutesColor, minutes.length(), minutesColor);
 
         if (hoursDone || minutesDone) {
             scheduleNextMinute(context);
         }
     }
 
+    /**
+     * @param accentStart index in {@code text} from which {@code accentColor} is used
+     *                    (use {@code text.length()} for a single color)
+     */
     private static boolean apply(@NonNull Context context, @NonNull RemoteViews rv, int dotsViewId, int clockViewId,
-                                 @NonNull String text, int color) {
+                                 @NonNull String text, int color, int accentStart, int accentColor) {
 
         if (dotsViewId == 0 || clockViewId == 0) {
             return false;
         }
 
-        final Bitmap bitmap = render(context, text, color);
+        final Bitmap bitmap = render(context, text, color, accentStart, accentColor);
         if (bitmap == null) {
             return false;
         }
@@ -119,7 +134,8 @@ public final class DotMatrixClock {
     }
 
     @Nullable
-    private static Bitmap render(@NonNull Context context, @NonNull String text, int color) {
+    private static Bitmap render(@NonNull Context context, @NonNull String text, int color,
+                                 int accentStart, int accentColor) {
         final Typeface typeface = getTypeface(context);
         if (typeface == null) {
             return null;
@@ -143,7 +159,16 @@ public final class DotMatrixClock {
 
         final Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(bitmap);
-        canvas.drawText(text, padding, padding - digitBounds.top, paint);
+        final float baseline = padding - digitBounds.top;
+        final int split = Math.max(0, Math.min(accentStart, text.length()));
+
+        // First part (e.g. hours and colon) in the main color, the rest (e.g. minutes) in the accent color.
+        final String first = text.substring(0, split);
+        canvas.drawText(first, padding, baseline, paint);
+        if (split < text.length()) {
+            paint.setColor(accentColor);
+            canvas.drawText(text.substring(split), padding + paint.measureText(first), baseline, paint);
+        }
         return bitmap;
     }
 
