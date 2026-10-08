@@ -127,7 +127,7 @@ public class FirstLaunch extends BaseActivity {
      * Points to the GitHub page where you can view all the application's features.
      */
     private void setupMainFeaturesText() {
-        String link = ("<a href=\"https://github.com/BlackyHawky/Clock#features-\">"
+        String link = ("<a href=\"https://github.com/andrasulthan-alt/OmniClock#features\">"
             + getString(R.string.first_launch_main_feature_link) + "</a>");
 
         Spanned mainFeaturesMessage = HtmlCompat.fromHtml(getString(R.string.first_launch_main_feature_message, link),
