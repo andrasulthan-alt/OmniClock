@@ -248,7 +248,7 @@ public class DeskClock extends BaseActivity implements FabContainer {
 
         configureFabAndButtons();
 
-        displayKeepAndroidOpenDialogIfUnread();
+        // OmniClock: the original developer's personal "Keep Android Open" message is not shown in this fork
 
         registerPrefListener();
 
