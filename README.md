@@ -1,6 +1,32 @@
-# OmniClock
+<p align="center">
+  <img src="docs/icon.png" width="120" alt="OmniClock icon" />
+</p>
 
-A Nothing-style clock for Android — black, gray and white with a single red accent, and dot-matrix digits everywhere.
+<h1 align="center">OmniClock</h1>
+
+<p align="center">
+  A Nothing-style clock for Android: alarm, world clock, timer and stopwatch.<br/>
+  Dot-matrix digits, one red accent. No internet, no ads, about 3.4 MB.
+</p>
+
+<p align="center">
+  <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22app.omniclock%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fandrasulthan-alt%2FOmniClock%22%2C%22author%22%3A%22andrasulthan-alt%22%2C%22name%22%3A%22OmniClock%22%7D"><img src="docs/obtainium.png" height="48" alt="Get it on Obtainium" /></a>
+</p>
+
+---
+
+> **New in 1.0.1: the analog widget always uses the dot-matrix dial, and the digital widget shows AM/PM in 12-hour mode.** The app is now called OmniClock everywhere, and the original developer's pop-up no longer appears on startup.
+
+<p align="center">
+  <img src="docs/screenshots/alarm.png" width="19%" alt="Alarms" />
+  <img src="docs/screenshots/clock.png" width="19%" alt="Clock and world clock" />
+  <img src="docs/screenshots/timer.png" width="19%" alt="Timer" />
+  <img src="docs/screenshots/stopwatch.png" width="19%" alt="Stopwatch" />
+  <img src="docs/screenshots/widgets.png" width="19%" alt="Dot-matrix home-screen widgets" />
+</p>
+<p align="center"><sub>Alarm · Clock · Timer · Stopwatch · Widgets (previews drawn from the app's colors, font and layout)</sub></p>
+
+## What it does
 
 OmniClock is an alarm, clock, timer and stopwatch app with home-screen widgets that look like they belong on a Nothing phone, even on phones from other brands.
 
