@@ -33,18 +33,8 @@ public class AnalogAppWidgetProvider extends BaseAnalogAppWidgetProvider {
 
     @Override
     protected int getLayoutId(@NonNull SharedPreferences prefs) {
-        if (SdkUtils.isAtLeastAndroid12()) {
-            return R.layout.appwidget_analog_default;
-        }
-
-        return switch (WidgetDAO.getAnalogWidgetClockDial(prefs)) {
-            case ANALOG_WIDGET_CLOCK_DIAL_WITH_NUMBERS -> R.layout.appwidget_analog_dial_with_number;
-            case ANALOG_WIDGET_CLOCK_DIAL_WITHOUT_NUMBERS -> R.layout.appwidget_analog_dial_without_number;
-            case ANALOG_WIDGET_CLOCK_DIAL_WITH_ROMAN_NUMBERS -> R.layout.appwidget_analog_dial_with_roman_numbers;
-            case ANALOG_WIDGET_CLOCK_DIAL_SUN -> R.layout.appwidget_analog_dial_sun;
-            case ANALOG_WIDGET_CLOCK_DIAL_FLOWER -> R.layout.appwidget_analog_dial_flower;
-            default -> R.layout.appwidget_analog_default;
-        };
+        // OmniClock: always the Nothing-style dot-matrix dial and hands
+        return R.layout.appwidget_analog_default;
     }
 
     @Override
@@ -54,34 +44,20 @@ public class AnalogAppWidgetProvider extends BaseAnalogAppWidgetProvider {
 
     @Override
     protected Icon getDialIcon(@NonNull Context context, @NonNull SharedPreferences prefs) {
-        return switch (WidgetDAO.getAnalogWidgetClockDial(prefs)) {
-            case ANALOG_WIDGET_CLOCK_DIAL_WITH_NUMBERS -> Icon.createWithResource(context, R.drawable.analog_clock_dial_with_numbers);
-            case ANALOG_WIDGET_CLOCK_DIAL_WITHOUT_NUMBERS -> Icon.createWithResource(context, R.drawable.analog_clock_dial_without_numbers);
-            case ANALOG_WIDGET_CLOCK_DIAL_WITH_ROMAN_NUMBERS -> Icon.createWithResource(context, R.drawable.analog_clock_dial_with_roman_numbers);
-            case ANALOG_WIDGET_CLOCK_DIAL_SUN -> Icon.createWithResource(context, R.drawable.analog_clock_dial_sun);
-            case ANALOG_WIDGET_CLOCK_DIAL_FLOWER -> Icon.createWithResource(context, R.drawable.analog_clock_dial_flower);
-            default -> Icon.createWithResource(context, R.drawable.analog_clock_dial);
-        };
+        // OmniClock: always the Nothing-style dot-matrix dial and hands
+        return Icon.createWithResource(context, R.drawable.analog_clock_dial);
     }
 
     @Override
     protected Icon getHourHandIcon(@NonNull Context context, @NonNull SharedPreferences prefs) {
-        return switch (WidgetDAO.getAnalogWidgetClockDial(prefs)) {
-            case ANALOG_WIDGET_CLOCK_DIAL_SUN, ANALOG_WIDGET_CLOCK_DIAL_FLOWER ->
-                Icon.createWithResource(context, R.drawable.analog_clock_hour_rounded);
-            case ANALOG_WIDGET_CLOCK_DIAL_WITH_ROMAN_NUMBERS -> Icon.createWithResource(context, R.drawable.analog_clock_roman_hour);
-            default -> Icon.createWithResource(context, R.drawable.analog_clock_hour);
-        };
+        // OmniClock: always the Nothing-style dot-matrix dial and hands
+        return Icon.createWithResource(context, R.drawable.analog_clock_hour);
     }
 
     @Override
     protected Icon getMinuteHandIcon(@NonNull Context context, @NonNull SharedPreferences prefs) {
-        return switch (WidgetDAO.getAnalogWidgetClockDial(prefs)) {
-            case ANALOG_WIDGET_CLOCK_DIAL_SUN, ANALOG_WIDGET_CLOCK_DIAL_FLOWER ->
-                Icon.createWithResource(context, R.drawable.analog_clock_minute_rounded);
-            case ANALOG_WIDGET_CLOCK_DIAL_WITH_ROMAN_NUMBERS -> Icon.createWithResource(context, R.drawable.analog_clock_roman_minute);
-            default -> Icon.createWithResource(context, R.drawable.analog_clock_minute);
-        };
+        // OmniClock: always the Nothing-style dot-matrix dial and hands
+        return Icon.createWithResource(context, R.drawable.analog_clock_minute);
     }
 
     @Override

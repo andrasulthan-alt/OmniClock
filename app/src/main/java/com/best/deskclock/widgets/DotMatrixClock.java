@@ -69,7 +69,10 @@ public final class DotMatrixClock {
         final int minutesColor = isDefaultColor
             ? ContextCompat.getColor(context, R.color.md_theme_widgetTertiary)
             : color;
-        final String pattern = DateFormat.is24HourFormat(context) ? "HH:mm" : "h:mm";
+        final boolean is24Hour = DateFormat.is24HourFormat(context);
+        // OmniClock: in 12-hour mode show AM/PM after the time, unless the user hid it
+        final String pattern = is24Hour ? "HH:mm"
+            : (WidgetDAO.isAmPmHiddenOnDigitalWidget(prefs) ? "h:mm" : "h:mm a");
         final String time = format(pattern);
         final int minutesStart = time.indexOf(':') + 1;
 
