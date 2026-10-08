@@ -13,6 +13,7 @@
 
         <ListPreference
             android:key="key_analog_widget_clock_dial"
+            app:isPreferenceVisible="false"
             android:layout="@layout/settings_preference_layout"
             android:title="@string/clock_dial_title"
             android:entries="@array/analog_widget_clock_dial_entries"

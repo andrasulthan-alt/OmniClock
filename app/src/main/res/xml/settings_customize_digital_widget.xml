@@ -30,6 +30,7 @@
 
         <SwitchPreferenceCompat
             android:key="key_digital_widget_seconds_displayed"
+            app:isPreferenceVisible="false"
             android:layout="@layout/settings_preference_layout"
             android:title="@string/display_clock_seconds_pref"
             android:defaultValue="false"
